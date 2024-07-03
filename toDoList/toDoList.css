@@ -1,0 +1,89 @@
+
+
+header {
+    display: flex;
+    flex-direction: column; /* 세로 정렬 */
+    align-items: center; /* 가로 중앙 정렬 */
+    justify-content: center; /* 세로 중앙 정렬 */
+    height: 150px; /* 헤더 높이 설정 */
+    width: 40%;
+    border-radius: 15px; /* 모서리를 둥글게 */
+}
+
+.wrapper{
+  display: flex;
+  justify-content: space-between;
+  margin: auto !important;
+}
+
+.wrapper input {
+
+    width:  200px;
+    height: 39px;
+    border: 1px solid;
+    border-radius: 0;
+    cursor: pointer;
+    margin-right: 10px;
+
+}
+
+.wrapper button {
+    background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 1px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.5em;
+}
+
+/* Body */
+
+body {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    height: 50vh; /* 전체 화면 높이 설정 */
+    margin: 0;
+    background-color: rgb(228, 224, 224); 
+}
+
+.list-container{
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    height: 200px; /* 헤더 높이 설정 */
+    width: 40%;
+    margin-top: 30px;
+    background-color: rgb(212, 71, 205);
+    border-radius: 15px; /* 모서리를 둥글게 */
+}
+
+#toDoList{
+    list-style-type: none; /* li 요소의 기본 점을 없앱니다 */
+            padding: 0; /* 기본 패딩 제거 (옵션) */
+}
+
+.item{
+  display: flex;
+  justify-content: space-between;
+  margin: auto !important;
+}
+
+.item input {
+    margin-right: 30px;
+    height: 20px;
+}
+
+.item span{
+    margin-left: 50px;
+    margin-right: 50px;
+    font-size: 20px;
+}
+
+.item button{
+    margin-left: 20px;
+}
