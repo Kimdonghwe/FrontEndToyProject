@@ -18,7 +18,7 @@ header {
 
 .wrapper input {
 
-    width:  200px;
+    width:  300px;
     height: 39px;
     border: 1px solid;
     border-radius: 0;
@@ -38,6 +38,32 @@ header {
   font-size: 1.5em;
 }
 
+/*  */
+
+.selectbtnsDel {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #04AA6D;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+  
+  .selectbtnsDel:hover {background-color: #3e8e41}
+  
+  .selectbtnsDel:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+
 /* Body */
 
 body {
@@ -45,7 +71,7 @@ body {
     flex-direction: column; 
     justify-content: center; /* 가로 중앙 정렬 */
     align-items: center; /* 세로 중앙 정렬 */
-    height: 50vh; /* 전체 화면 높이 설정 */
+    height: 100vh; /* 전체 화면 높이 설정 */
     margin: 0;
     background-color: rgb(228, 224, 224); 
 }
@@ -55,7 +81,7 @@ body {
     flex-direction: column; 
     justify-content: center; /* 가로 중앙 정렬 */
     align-items: center; /* 세로 중앙 정렬 */
-    height: 200px; /* 헤더 높이 설정 */
+    height: 40%; /* 헤더 높이 설정 */
     width: 40%;
     margin-top: 30px;
     background-color: rgb(212, 71, 205);
@@ -70,18 +96,19 @@ body {
 .item{
   display: flex;
   justify-content: space-between;
-  margin: auto !important;
+  margin: 3px !important;
 }
 
 .item input {
+    width: 40px;
     margin-right: 30px;
     height: 20px;
 }
 
 .item span{
-    margin-left: 50px;
-    margin-right: 50px;
-    font-size: 20px;
+    margin-left: 100px;
+    margin-right: 100px;
+    font-size: 30px;
 }
 
 .item button{
