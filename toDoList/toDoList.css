@@ -81,11 +81,12 @@ body {
     flex-direction: column; 
     justify-content: center; /* 가로 중앙 정렬 */
     align-items: center; /* 세로 중앙 정렬 */
-    height: 40%; /* 헤더 높이 설정 */
     width: 40%;
     margin-top: 30px;
     background-color: rgb(212, 71, 205);
     border-radius: 15px; /* 모서리를 둥글게 */
+    padding: 10px; /* 내부 여백 추가 */
+    overflow: hidden; /* 내부 요소가 넘치지 않도록 설정 */
 }
 
 #toDoList{
