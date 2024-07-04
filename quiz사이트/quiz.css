@@ -1,0 +1,57 @@
+body {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    height: 100vh; /* 전체 화면 높이 설정 */
+    margin: 0;
+    background-color: rgb(202, 90, 90); 
+}
+
+.container{
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    width: 60%;
+    margin-top: 30px;
+    background-color: rgb(255, 254, 255);
+    border-radius: 15px; /* 모서리를 둥글게 */
+    padding: 10px; /* 내부 여백 추가 */
+    overflow: hidden; /* 내부 요소가 넘치지 않도록 설정 */
+}
+
+.question-wrapper{
+    display: flex;
+    width: 100%; 
+}
+
+.answer-wrapper{
+    display: flex;
+    width: 100%; 
+}
+
+.answers{
+    list-style-type: none; /* li 요소의 기본 점을 없앱니다 */
+    padding: 0; /* 기본 패딩 제거 (옵션) */
+    width: 100%;
+    counter-reset: answer-counter;
+}
+
+.answers li:before {
+    content: counter(answer-counter) ". ";
+    counter-increment: answer-counter;
+    position: absolute;
+    left: 0;
+}
+
+.answers li {
+    margin: 10px 0;
+    position: relative;
+    padding-left: 25px;
+}
+
+progress {
+    width: 100%;
+    height: 30px;
+}
