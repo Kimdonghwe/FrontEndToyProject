@@ -22,15 +22,29 @@
 
         <div class="answer-wrapper">
             <ul class="answers">
-                <li> <label for="answer1" class="answer">1</label><input type="radio" name="answer1" id="answer1" value="1"></li>
-                <li> <label for="answer2" class="answer">2</label><input type="radio" name="answer2" id="answer2" value="2"></li>
-                <li> <label for="answer3" class="answer">3</label><input type="radio" name="answer3" id="answer3" value="3"></li>
-                <li> <label for="answer4" class="answer">4</label><input type="radio" name="answer4" id="answer4" value="4"></li>
+                <li> <label for="answer1" class="answer1">1</label><input type="radio" name="answer" id="answer1" value="1"></li>
+                <li> <label for="answer2" class="answer2">2</label><input type="radio" name="answer" id="answer2" value="2"></li>
+                <li> <label for="answer3" class="answer3">3</label><input type="radio" name="answer" id="answer3" value="3"></li>
+                <li> <label for="answer4" class="answer4">4</label><input type="radio" name="answer" id="answer4" value="4"></li>
             </ul>
         </div>
         <progress id="fileProgress" value="0" max="100"></progress>
+        <button type="button" class="prevQeustionBtn hidden">이전</button>
         <button  type="button" class="nextQuestionBtn">다음문제</button>
+        <button type="button" class="submitBtn hidden">제출</button>
         
     </div>
+
+    <!-- 모달 창 -->
+    <div id="resultModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="closeBtn">&times;</span>
+            <h2>퀴즈 결과</h2>
+            <p>맞은 개수: <span id="correctCount"></span></p>
+            <p>틀린 개수: <span id="incorrectCount"></span></p>
+            <div id="detailedResults"></div>
+        </div>
+    </div>
+
 </body>
 </html>

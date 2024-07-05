@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
         },{
             infoQuestion : "이항(binary) 연산에 해당하는 것은?",
             infoChoice : ["COMPLEMENT", "AND", "ROTATE", "SHIFT"],
-            infoAnswer: "AND",
+            infoAnswer: 2,
             infoDesc : "<br>단항연산 : ROTATE, SHIFT, MOVE, NOT(COMPLEMENT) 입니다. "
         },{
             infoQuestion : "다음 그림의 연산결과는?",
@@ -35,66 +35,169 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     ];
 
+
+    let progressBar = document.getElementById('fileProgress');
     const  answerchecks = document.querySelectorAll("input[type=radio]"); 
     const nextQuestionBtn = document.querySelector(".nextQuestionBtn");
+    const prevQuestionBtn = document.querySelector(".prevQeustionBtn");
+    const submitBtn = document.querySelector(".submitBtn");
+
+    const resultModal = document.getElementById("resultModal");
+    const closeBtn = document.querySelector(".closeBtn");
+    const correctCountElem = document.getElementById("correctCount");
+    const incorrectCountElem = document.getElementById("incorrectCount");
+    const detailedResultsElem = document.getElementById("detailedResults");
+
     let userAnswers = [];
+    let currentQuestionNum = 1;
 
-    let currentQeustionNum = 1;
 
-    if(currentQeustionNum == 1 ) nextQuiz();
+    if (currentQuestionNum === 1) nextQuiz();
+
+    function updateButtonVisibility() {
+        if (currentQuestionNum !== 1) prevQuestionBtn.classList.remove("hidden");
+        else prevQuestionBtn.classList.add("hidden");
+
+        if (currentQuestionNum !== MAXNUMBER) {
+            submitBtn.classList.add("hidden");
+            nextQuestionBtn.classList.remove("hidden");
+        } else {
+            submitBtn.classList.remove("hidden");
+            nextQuestionBtn.classList.add("hidden");
+        }
+    }
+
+    prevQuestionBtn.addEventListener("click", function() {
+        if (currentQuestionNum > 1) {
+            currentQuestionNum--;
+            prevQuiz();
+        }
+    });
 
     nextQuestionBtn.addEventListener("click", function() {
-        if(currentQeustionNum == MAXNUMBER) nextQuestionBtn.remove();
         let flag = true; 
         answerchecks.forEach( check  => {
             if (check.checked) { 
                 userAnswers.push(Number(check.value));
+                console.log(userAnswers);
+                currentQuestionNum++;
                 nextQuiz();
                 flag = false;
-                console.log(userAnswers)
             }
         });
        if(flag) alert("All questions must be answered");
     });
 
+    submitBtn.addEventListener("click", function() {
+        let flag = true; 
+        answerchecks.forEach( check  => {
+            if (check.checked) { 
+                userAnswers.push(Number(check.value));
+                console.log(userAnswers);
+                flag = false;
+            }
+        });
+       if(flag) alert("All questions must be answered");
+
+        showResults();
+        resultModal.classList.add("show");
+    });
+
+    closeBtn.addEventListener("click", function() {
+        resultModal.classList.remove("show");
+    });
     
     
 
     function nextQuiz() {
         let currentQeustion = document.querySelector(".question");
-        let currentAnswers = [];
-        let selectedAnswers = 0;
         let cnt = 0;
 
-        currentQeustion.textContent = `${currentQeustionNum}. ${quizInfo[currentQeustionNum-1].infoQuestion}`;
+        currentQeustion.textContent = `${currentQuestionNum}. ${quizInfo[currentQuestionNum-1].infoQuestion}`;
 
 
 
-        const answers = document.querySelectorAll(".answer");  
+        const answers = document.querySelectorAll("label");  
         answers.forEach(answer => { 
-            answer.textContent = quizInfo[currentQeustionNum-1].infoChoice[cnt++];
-        });
-     
-        currentQeustionNum++;
+            answer.textContent = quizInfo[currentQuestionNum-1].infoChoice[cnt++];
+        });     
+
         increaseProgress();
 
         // 다음문제로 넘어갈때 모든 radio 버튼 체크 해제
         answerchecks.forEach( check  => {
             check.checked = false;
         });
+        updateButtonVisibility();
     }
 
-    function beforeQeution(){
+    function prevQuiz() {
+        let currentQuestion = document.querySelector(".question");
+        let cnt = 0;
 
+        currentQuestion.textContent = `${currentQuestionNum}. ${quizInfo[currentQuestionNum - 1].infoQuestion}`;
+
+        const answers = document.querySelectorAll("label");  
+        answers.forEach(answer => {
+            answer.textContent = quizInfo[currentQuestionNum - 1].infoChoice[cnt++];
+        });
+
+        // 이전 답변 복원
+        answerchecks.forEach((check, index) => {
+            console.log(currentQuestionNum+" "+userAnswers[currentQuestionNum - 1] + " " + (index+1));
+            if (userAnswers[(currentQuestionNum-1)] == index+1) {
+                
+                check.checked = true;
+                userAnswers.pop();
+            }
+        });
+
+        decreaseProgress();
+
+        updateButtonVisibility();
     }
 
 
 
     function increaseProgress() {
-        const progressBar = document.getElementById('fileProgress');
+
         if (progressBar.value < 100) {
-            progressBar.value += 16.66666;
+            progressBar.value += 100 / MAXNUMBER;
         }
     }
+
+    function decreaseProgress() {
+        if (progressBar.value > 0) {
+            progressBar.value -= 100 / MAXNUMBER;
+        }
+    }
+
+    function showResults() {
+        let correctCount = 0;
+        let incorrectCount = 0;
+        detailedResultsElem.innerHTML = '';
+
+        quizInfo.forEach((question, index) => {
+            const userAnswer = userAnswers[index];
+            const correctAnswer = question.infoAnswer;
+
+            let resultHTML = `<p>${index + 1}번 문제: ${question.infoQuestion}</p>`;
+            resultHTML += `<p>사용자 정답: ${question.infoChoice[userAnswer-1]}</p>`;
+            resultHTML += `<p>문제 정답: ${question.infoChoice[correctAnswer-1]}</p>`;
+
+            if (userAnswer === correctAnswer) {
+                correctCount++;
+            } else {
+                incorrectCount++;
+                resultHTML += `<p>해설: ${question.infoDesc}</p>`;
+            }
+
+            detailedResultsElem.innerHTML += resultHTML + '<hr>';
+        });
+
+        correctCountElem.textContent = correctCount;
+        incorrectCountElem.textContent = incorrectCount;
+    }
+
 
 });
