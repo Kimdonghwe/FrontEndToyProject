@@ -1,0 +1,72 @@
+body {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    height: 100vh; /* 전체 화면 높이 설정 */
+    margin: 0;
+}
+
+.container{
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    width: 60%;
+    margin-top: 30px;
+    background-color: rgb(255, 254, 255);
+    padding: 10px; /* 내부 여백 추가 */
+    overflow: hidden; /* 내부 요소가 넘치지 않도록 설정 */
+    border: 1px solid black; 
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.arrow-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.arrow-btn:focus {
+    outline: none;
+}
+
+.month-year {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    width: 100%;
+    background-color: #f1f1f1;
+    text-align: center;
+}
+
+.calendar-weekdays div {
+    font-weight: bold;
+    color: #666;
+    padding: 10px 0;
+    border: 1px solid #f1f1f1;
+}
+
+.calendar-body {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    width: 100%;
+    padding: 10px;
+}
+
+.calendar-body div {
+    text-align: center;
+    padding: 10px 0;
+    border: 1px solid #f1f1f1;
+}
